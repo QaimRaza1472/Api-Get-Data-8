@@ -24,13 +24,13 @@ class DummyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  MyHomePage(title: 'Api Data',id: 1472),
+      home:  const MyHomePage(title: 'Api Data',id: 1472),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title,  required this.id}) : super(key: key);
+  const MyHomePage({Key? key, required this.title,  required this.id}) : super(key: key);
 
   final String title;
   final int id;
@@ -51,8 +51,11 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState(){
     // TODO: implement initState
     super.initState();
-    listdata();
-    //_dummy_myRecord = await  Dummy_APi_Manager().getData();
+     listdata();
+
+
+     //_dummy_myRecord = await  Dummy_APi_Manager().getData();
+
   }
 
 
@@ -64,6 +67,18 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: IconButton(
+        onPressed: () {
+          print("Button Pressed");
+        },
+        icon: Container(
+          height: 50,
+          width: 220,
+          decoration: const BoxDecoration(
+            color: Colors.yellow,
+          ),
+        ),
+      ),
         appBar: AppBar(
           centerTitle: true,
           title: Text(widget.title),
@@ -116,7 +131,8 @@ class _MyHomePageState extends State<MyHomePage> {
         )*/
 
 
-      body:  ListView.builder(
+      body: _dummy_myRecord!=null
+     ? ListView.builder(
         //itemCount:snapshot.data?.avatarUrl.toString().length,
         itemCount: _dummy_myRecord?.length,
         itemBuilder: (context,index){
@@ -151,7 +167,12 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           );
         }
+    ):
+     const Center(
+    child: CircularProgressIndicator(),
     ),
+
+
     );
   }
 }
