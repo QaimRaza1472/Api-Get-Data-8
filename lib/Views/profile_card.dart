@@ -18,6 +18,7 @@ class ProfileCard extends StatelessWidget {
           children: [
             Row(
               children: [
+
                 Container(
                   height: 70,
                   width: 70,
@@ -29,6 +30,7 @@ class ProfileCard extends StatelessWidget {
                     ),
                   ),
                 ),
+
                 const SizedBox(
                   width: 10,
                 ),
